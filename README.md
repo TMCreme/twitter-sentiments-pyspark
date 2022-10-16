@@ -9,7 +9,7 @@ This project seeks to simulate a real-time data ingestion and analytics pipeline
 3. Due to the limitation of queries to be performed on the Streaming data, an aggregation is performed and the data pushed to the Pandas API on Spark to enable plotting and any other analytics. 
 
 ## Drawback 
-Due to the conversion to the Pandas API on Spark for analytics, this conversation must be executed regualarly to update the data available for analysis
+Due to the conversion to the Pandas API on Spark for analysis, the following conversion must be executed regualarly to update the data available for analysis
 ```py
 final_result = spark.sql("select * from aggregates").toPandas() 
 ```
@@ -35,7 +35,7 @@ final_result = spark.sql("select * from aggregates").toPandas()
     export PYSPARK_DRIVER_PYTHON='jupyter'
 
     export PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port=8889'
-    
+
 8. Run the following from the virtual environment to start the jupyter-notebook `pyspark --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.3.0`
 9. Open the browser and access jupyter-notebook on http://localhost:8889 
 10. Run `StreamingTweets.ipynb`

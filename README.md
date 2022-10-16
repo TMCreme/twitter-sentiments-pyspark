@@ -10,9 +10,31 @@ This project seeks to simulate a real-time data ingestion and analytics pipeline
 
 ## Drawback 
 Due to the conversion to the Pandas API on Spark for analytics, this conversation must be executed regualarly to update the data available for analysis
-```
+```py
 final_result = spark.sql("select * from aggregates").toPandas() 
 ```
+
+## Setup 
+1. Install Kafka. Go to the oficial online page and download the binaries and follow the installation guide
+2. Start Kafka and Zookeeper 
+    * Change directory into the kafka base folder and Run the following in 2 different tabs of the command line and keep them running
+        * `./bin/zookeeper-server-start.sh config/zookeeper.properties`
+        * `./bin/kafka-server-start.sh config/server.properties`
+3. Create the kafka topic to be used for the streaming by running the command below in the terminal
+    * `./bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic kafka_tweets_stream --partitions 1 --replication-factor 1`
+4. Install Spark by following the official guide. 
+5. Start spark from the base directory, run `./sbin/start-master.sh` 
+6. Create a virtual environment and install the requirements `pip install -r requirements.txt` 
+7. To integrate and run pyspark with Jupyter-notebook, create the following environmental variables by adding this to `~/.bashrc` or `~/.bash_profile` and activate/refresh by running `source ~/.bashrc`
+    export SPARK_HOME=/opt/local//spark
+    export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+    export PYSPARK_PYTHON=/usr/local/bin/python3
+    export PYSPARK_DRIVER_PYTHON='jupyter'
+    export PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port=8889'
+8. Run the following from the virtual environment to start the jupyter-notebook `pyspark --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.3.0`
+9. Open the browser and access jupyter-notebook on http://localhost:8889 
+10. Run `StreamingTweets.ipynb`
+11. Run `Twitter Sentiments with Spark and Tweeps.ipynb`
 
 
 

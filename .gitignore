@@ -1,0 +1,9 @@
+secrets.ini
+*.csv
+*.parquet
+*json
+*.orc
+.DS_Store
+quickstart_*
+*test*
+*checkpoints*

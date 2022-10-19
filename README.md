@@ -26,15 +26,16 @@ final_result = spark.sql("select * from aggregates").toPandas()
 5. Start spark from the base directory, run `./sbin/start-master.sh` 
 6. Create a virtual environment and install the requirements `pip install -r requirements.txt` 
 7. To integrate and run pyspark with Jupyter-notebook, create the following environmental variables by adding this to `~/.bashrc` or `~/.bash_profile` and activate/refresh by running `source ~/.bashrc`
-    export SPARK_HOME=/opt/local//spark
+    
+    `export SPARK_HOME=/opt/local//spark`
 
-    export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+    `export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin`
 
-    export PYSPARK_PYTHON=/usr/local/bin/python3
+    `export PYSPARK_PYTHON=/usr/local/bin/python3`
 
-    export PYSPARK_DRIVER_PYTHON='jupyter'
+    `export PYSPARK_DRIVER_PYTHON='jupyter'`
 
-    export PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port=8889'
+    `export PYSPARK_DRIVER_PYTHON_OPTS='notebook --no-browser --port=8889'`
 
 8. Run the following from the virtual environment to start the jupyter-notebook `pyspark --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.3.0`
 9. Open the browser and access jupyter-notebook on http://localhost:8889 
